@@ -1,0 +1,2 @@
+tethyscluster start -x gpu_instance
+tethyscluster sshmaster gpu_instance "mkdir testssh"

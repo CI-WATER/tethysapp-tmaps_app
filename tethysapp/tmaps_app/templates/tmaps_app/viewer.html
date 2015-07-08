@@ -1,0 +1,47 @@
+{% extends "tmaps_app/base.html" %}
+
+{% load tethys_gizmos %}
+
+{% block app_navigation_items %}
+  <li class="title">App Navigation</li>
+  <li><a href="{% url 'tmaps_app:home' %}">Home</a></li>
+  <li><a href="">Jobs</a></li>
+  <li><a href="{% url 'tmaps_app:library' %}">Saved Projects</a></li>
+  <li class="title">New Project</li>
+  <li><a href="{% url 'tmaps_app:load' %}">1. Load Files</a></li>
+  <li><a href="{% url 'tmaps_app:preview' %}">2. Preview and Run</a></li>
+  <li class="active"><a href="{% url 'tmaps_app:viewer' %}">3. View Results</a></li>
+  <li class="separator"></li>
+  <li><a href="">About TMAPS</a></li>
+{% endblock %}
+
+{% block app_content %}
+
+
+<div id="page_wrap" style="width: 1350px; height: 1100px">	  
+   
+  <div class="center_content">
+  
+            <div style="width: 1300px; height: 950px;"><h1 align="center">Time Machine Example</h1>
+            <iframe src="http://gme.byu.edu/timemachine/newtmc/new.timemachine/new.timemachine/view.html" width ="100%" height="100%"></iframe>
+            
+
+            </div>
+    <div class="clear"></div>     
+  </div>
+  
+  
+</div>   
+
+
+{% endblock %}
+
+{% block app_actions %}
+  <a href="{% url 'tmaps_app:library' %}" class="btn btn-default">See Saved Projects</a>
+  <a href="{% url 'tmaps_app:preview' %}" class="btn btn-default">Back</a>
+{% endblock %}
+
+{% block scripts %}
+  {{ block.super }}
+  {% gizmo_dependencies %}
+{% endblock %}
