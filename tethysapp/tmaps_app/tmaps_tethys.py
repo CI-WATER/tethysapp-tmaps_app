@@ -1272,9 +1272,9 @@ def runtm(cores, mapxmin, mapxmax, mapymin, mapymax):
 #------------------------------------------------------------------------------
     
 
-user_parameter = 'meshSurfacewaterDepth'
-user_contour = 'bluetored'
-user_opacity = 0.16
+user_parameter = 'meshGroundwaterHead'
+user_contour = 'cooltowarm'
+user_opacity = 0.5
 
 
 

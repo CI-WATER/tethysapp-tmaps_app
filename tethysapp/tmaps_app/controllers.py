@@ -197,8 +197,8 @@ def library(request):
     select_input5 = {'display_text': 'Select Saved Project For Viewing',
                 'name': 'select_input5',
                 'multiple': False,
-                'options': [('Green River: Snow Eq',   'cooltowarm'), ('Green River: Surfacwater Depth', 'bluetocyan'), ('Green River w/Basemap: Surfacwater Depth', 'bluetored'),( 'Blue Yellow Red', 'blueyellowred'), ('Rainbow Desat', 'rainbowdesat')],
-                'initial': ['Cool to Warm']}
+                'options': [('Upper Green River - Snow Eq in mm - October 2000 to November 2000',   '1'), ('Upper Green River - Surfacwater Depth in m - October 2000 to November 2000', '2'), ('Upper Green River w/Basemap - Surfacwater Depth in m - October 2000 to November 2000', '3')],
+                'initial': ['Upper Green River - Snow Eq in mm - October 2000 to November 2000']}
 
     
     # Create template context dictionary
