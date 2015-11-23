@@ -19,17 +19,22 @@ $("#select5").on('change',function() {
 });
 
 $("#select_input5").on('change',function() {
+
+    var tm_passed_list = $('#tmapsIframe').attr('data-tm_info');
+    tm_passed_list = JSON.parse(tm_passed_list);
+
+
+    var tm_num = $(this).val();
+    tm_num = tm_num-1;
+
+
+
     var theIframe = document.getElementById('tmapsIframe');
     var theUrl;
 
-    if ($(this).val() == "1")
-        theUrl = "http://gme.byu.edu/tmaps_app_timemachines/greenriversnoweq.timemachine/view.html";
-        theIframe.src = theUrl;
-    if ($(this).val() == "2")
-        theUrl = "http://gme.byu.edu/tmaps_app_timemachines/greenriver_surfacewaterdepthwomap.timemachine/view.html";
-        theIframe.src = theUrl;
-    if ($(this).val() == "3")
-        theUrl = "http://gme.byu.edu//tmaps_app_timemachines/surfacewaterdepthwbasemap.timemachine/view.html";
-        theIframe.src = theUrl;
+
+    theUrl = tm_passed_list[tm_num][2];
+    theIframe.src = theUrl;
+
 });
 

@@ -1274,7 +1274,7 @@ def runtm(cores, mapxmin, mapxmax, mapymin, mapymax):
 
 user_parameter = 'meshGroundwaterHead'
 user_contour = 'cooltowarm'
-user_opacity = 0.5
+user_opacity = 0.24
 
 
 

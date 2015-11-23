@@ -3,6 +3,7 @@ from .model import SessionMaker, StreamGage
 import base64
 import hmac, hashlib
 import os
+import json
 from tethys_apps.sdk.gizmos import GoogleMapView
 from tethys_apps.sdk.gizmos import MapView, MVDraw, MVView, MVLayer, MVLegendClass
 from tethys_apps.sdk import get_spatial_dataset_engine
@@ -162,46 +163,54 @@ def preview(request):
        
     
     return render(request, 'tmaps_app/preview.html', context)
-    
-def viewer(request):
-    """
-    Controller that will echo the name provided by the user via a form.
-    """
-    # Default value for name
-    name = ''
 
-    # Define Gizmo Options
-    text_input_options = {'display_text': 'Enter Name of your project:',
-                          'name': 'name-input'}
-
-    # Check form data
-    if request.POST and 'name-input' in request.POST:
-       name = request.POST['name-input']
-
-    # Create template context dictionary
-    context = {'name': name,
-               'text_input_options': text_input_options}
-
-    return render(request, 'tmaps_app/viewer.html', context)
     
 def library(request):
     """
     Controller that facilitates the library.html page by pasing the project variables
     """
-
-
-
+    
+    #This will setup the paths for where the time machines are stored
+    f = os.path.abspath(__file__)
+    b = os.path.dirname(f)
+    #This sets the directory to the subdirectories of where the time machines are located
+    a = os.path.join(b,'public/time_machines')
+    list_of_tm = os.listdir(a)
+    #Sets up a list for the use of the dropdown option
+    tm_info_list = []
+    tm_num = 1  
+    
+    #Loops through each time machine directory and reads the tmaps_app_info.txt
+    for tm in list_of_tm:    
+        get_select_titles = os.path.join(b,'public/time_machines/'+tm+'/tmaps_app_info.txt')
+        tm_info = open(get_select_titles, 'r').read().splitlines()
+        
+        get_tm_view = os.path.join(b,'/static/tmaps_app/time_machines/'+tm+'/view.html')        
+        
+        tm_info_list.append((tm_info, str(tm_num), get_tm_view))   
+        tm_num = tm_num + 1
+   
     if request.POST and 'select5' in request.POST:
        print 'working'
 
     select_input5 = {'display_text': 'Select Saved Project For Viewing',
                 'name': 'select_input5',
                 'multiple': False,
-                'options': [('Upper Green River - Snow Eq in mm - October 2000 to November 2000',   '1'), ('Upper Green River - Surfacwater Depth in m - October 2000 to November 2000', '2'), ('Upper Green River w/Basemap - Surfacwater Depth in m - October 2000 to November 2000', '3')],
-                'initial': ['Upper Green River - Snow Eq in mm - October 2000 to November 2000']}
+                'options': tm_info_list,
+                'initial': tm_info_list[0]}
 
     
     # Create template context dictionary
-    context = {'select_input5': select_input5}
+    context = {'select_input5': select_input5,
+               'tm_info_list': json.dumps(tm_info_list)}
 
     return render(request, 'tmaps_app/library.html', context)
+
+def makeyourown(request):
+    """
+    Controller that facilitates the makeyourown.html page by pasing the project variables
+    """
+
+    context = {}
+
+    return render(request, 'tmaps_app/makeyourown.html', context)

@@ -2,16 +2,34 @@
 
 {% block app_content %}
   <h1>Welcome to the TMAPS App</h1>
-  <p>TMAPS stands for Time Machine Automated Python Scripts. The app was developed in order to support the visualization of large transient watershed models. This is the beta version of the app, and the only currently supported model files are the ADHydro output. Stay tuned for additional model support!</p>
+  <div style="width: 900px; height: 70px">
+  <p>TMAPS stands for Time Machine Automated Python Scripts. Time Machine is an 
+    interactive viewer developed by the CREATE Lab at Carnegie Mellon University that allows users to explore high resolution datasets along
+    a timelapse. An example of a Time Machine performed by <a href="http://timemachine.cmucreatelab.org/wiki/EarthEngineTourEditor">Google</a>
+    on Earth satellite imagery is shown below:
+  </div>
   <br>
-  <p>This instance of the TMAPS App is setup to be used interactively to for the <b>Admin Users</b> to build Time Machines of ADHydro Output. ADHydro is a large-scale, high-resolution watshed simulation developed by the CI-WATER watershed modeling team. You can find out more information about the project <a href="http://www.uwyo.edu/cchh/adhydro.html">here</a></p>
+    <div  style="width: 1000px; height: 500px">	  
+            <div style="width: 80%; height: 500px;">
+            <iframe id="tmapsIframe" data-tm_info="{{tm_info_list}}"
+                src="https://earthengine.google.org/timelapse/player?c=https%3A%2F%2Fearthengine.google.org%2Ftimelapse%2Fdata&v=-10.4978,-63.25565,7.62&r=.5&p=true"
+                width="100%" height="100%"></iframe>
+            </div>
+    </div>  
+    <br>
+    <br>
+  <div style="width: 900px; height: 130px">
+  <p>This Tethys app was developed in order to help organize and distribute Time Machines
+    related to hydrologic models. ADHydro is a large-scale, high-resolution 
+    watshed simulation developed by the CI-WATER watershed modeling team. It is 
+    currently the preview model to display Time Machine capabilities realted to
+    hydrologic modeling. You can find out more information about ADHydro
+    <a href="http://www.uwyo.edu/cchh/adhydro.html">here</a></p>
   <br>
-  <p>The <b>Non-Admin Users</b> of this demo app will be able to view already processed Time Machines of ADHydro output but will not be able to produce their own due to the resources accessed when running the tool.</p>
 {% endblock %}
 
 
 {% block app_actions %}
 {% if user.is_superuser or user.is_staff %}
-  <a href="{% url 'tmaps_app:load' %}" class="btn btn-default">New Project</a>
 {% endif %}
 {% endblock %}

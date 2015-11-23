@@ -30,6 +30,10 @@ class FirstVersionTMAPS(TethysAppBase):
                            url='tmaps-app/library',
                            controller='tmaps_app.controllers.library'
                            ),
+                    UrlMap(name='makeyourown',
+                           url='tmaps-app/make-your-own',
+                           controller='tmaps_app.controllers.makeyourown'
+                           ),
                     UrlMap(name='load',
                            url='tmaps-app/load',
                            controller='tmaps_app.controllers.load'
@@ -37,10 +41,6 @@ class FirstVersionTMAPS(TethysAppBase):
                     UrlMap(name='preview',
                            url='tmaps-app/preview',
                            controller='tmaps_app.controllers.preview'
-                           ),
-                    UrlMap(name='viewer',
-                           url='tmaps-app/viewer',
-                           controller='tmaps_app.controllers.viewer'
                            ),
         )
 

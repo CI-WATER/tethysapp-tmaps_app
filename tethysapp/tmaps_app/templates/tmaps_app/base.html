@@ -20,17 +20,8 @@
 {% block app_navigation_items %}
   <li class="title">App Navigation</li>
   <li class="active"><a href="">Home</a></li>
-  <li><a href="{% url 'tmaps_app:library' %}">Saved Projects</a></li>
-
-  {% if user.is_superuser or user.is_staff %}
-  <li><a href="">Jobs</a></li>
-  <li class="title">New Project</li>
-  <li><a href="{% url 'tmaps_app:load' %}">1. Load Files</a></li>
-  <li><a href="{% url 'tmaps_app:preview' %}">2. Preview and Run</a></li>
-  <li><a href="{% url 'tmaps_app:viewer' %}">3. View Results</a></li>
-  {% endif %}
-  <li class="separator"></li>
-  <li><a href="">About TMAPS</a></li>
+  <li><a href="{% url 'tmaps_app:library' %}">Shared Projects</a></li>
+  <li><a href="{% url 'tmaps_app:makeyourown' %}">Make Your Own</a></li>
 
 {% endblock %}
 
