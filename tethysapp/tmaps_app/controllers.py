@@ -176,35 +176,52 @@ def library(request):
     #This sets the directory to the subdirectories of where the time machines are located
     a = os.path.join(b,'public/time_machines')
     list_of_tm = os.listdir(a)
-    #Sets up a list for the use of the dropdown option
-    tm_info_list = []
-    tm_num = 1  
-    
-    #Loops through each time machine directory and reads the tmaps_app_info.txt
-    for tm in list_of_tm:    
-        get_select_titles = os.path.join(b,'public/time_machines/'+tm+'/tmaps_app_info.txt')
-        tm_info = open(get_select_titles, 'r').read().splitlines()
-        
-        get_tm_view = os.path.join(b,'/static/tmaps_app/time_machines/'+tm+'/view.html')        
-        
-        tm_info_list.append((tm_info, str(tm_num), get_tm_view))   
-        tm_num = tm_num + 1
-   
-    if request.POST and 'select5' in request.POST:
-       print 'working'
+    if len(list_of_tm) > 1:
+        time_machines_exist=True
 
-    select_input5 = {'display_text': 'Select Saved Project For Viewing',
-                'name': 'select_input5',
-                'multiple': False,
-                'options': tm_info_list,
-                'initial': tm_info_list[0]}
+        #Sets up a list for the use of the dropdown option
+        tm_info_list = []
+        tm_options = []
+        tm_num = 1
 
-    
-    # Create template context dictionary
-    context = {'select_input5': select_input5,
-               'tm_info_list': json.dumps(tm_info_list)}
+        #Loops through each time machine directory and reads the tmaps_app_info.txt
+        for tm in list_of_tm:
+            if ".timemachine" not in str(tm):
+                continue
 
-    return render(request, 'tmaps_app/library.html', context)
+            get_select_titles = os.path.join(b,'public/time_machines/'+tm+'/tmaps_app_info.txt')
+            tm_info = open(get_select_titles, 'r').read().splitlines()
+
+            get_tm_view = os.path.join(b,'/static/tmaps_app/time_machines/'+tm+'/view.html')
+
+            tm_info_list.append((tm_info, str(tm_num), get_tm_view))
+            tm_options.append((tm_info,str(tm_num)))
+            tm_num = tm_num + 1
+
+
+        select_input5 = {'display_text': 'Select Saved Project For Viewing',
+                    'name': 'select_input5',
+                    'multiple': False,
+                    'options': tm_options,
+                    'attributes': 'id=select_input5',
+                    'initial': tm_info_list[0]}
+
+
+        # Create template context dictionary
+        context = {'select_input5': select_input5,
+                   'time_machines_exist': time_machines_exist,
+                   'tm_info_list': json.dumps(tm_info_list)}
+
+        return render(request, 'tmaps_app/library.html', context)
+
+    else:
+        time_machines_exist = False
+
+        # Create template context dictionary
+        context = {'time_machines_exist': time_machines_exist}
+
+        return render(request, 'tmaps_app/library.html', context)
+
 
 def makeyourown(request):
     """
