@@ -1,7 +1,7 @@
 #TMAPS App For Viewing Time Machines
 *tethysapp-adhydro_streamflow*
 
-**This app is created to run in the Teyths programming environment.
+**This app is created to run in the Tethys programming environment.
 See: https://github.com/CI-WATER/tethys and http://tethys-platform.readthedocs.org/en/1.0.0/**
 
 ##Prerequisites:
@@ -30,8 +30,8 @@ See: http://tethys-platform.readthedocs.org/en/1.0.0/production.html#enable-site
 ##Quick Setup Workflow For Viewing Time Machines
 
 - Use the TMAPS code on the CI-WATER GitHub repository for generating Time Machines
-- To incorporate Time Machines into the TMAPS Tethys app, pplace the '.timemachine' folder generated from TMAPS into the 'public/time_machines' directory.
-- Be sure that there is a file called
+- To incorporate Time Machines into the TMAPS Tethys app, place the '.timemachine' folder generated from TMAPS into the 'public/time_machines' directory of the app.
+- Be sure that there is a file called 'tmaps_app_info.txt' in the '.timemachine' folder which contains identifying metadata about your Time Machine.
 
 
 ##Updating the App:
